@@ -1,0 +1,174 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <h:outputStylesheet library ="css" name="bootstrap.css"/>
+        <title>Yonetici</title>
+        <style>
+            .bg-primarys{
+                background-color: #0f5e7f !important;
+            }
+        </style>
+    </h:head>
+    <h:body rendered="#{kullaniciKontroller.kullanici.kullanici_adi==null ? sessionScope.kullanici.yetki.grup == 'admin' ? true : false : true}">
+        
+        <div class ="row">
+            <nav  class="nav flex-column bg-primarys vertical-menu col-md-2 nav-tabs">
+                <h:form>
+                    <div class="navbar-header">
+
+                        <h:link outcome="/index.xhtml">
+                            <h:graphicImage value="/media/DaLogo.png" width="256" /> 
+                        </h:link> 
+
+                    </div>
+                    <hr class="sidebar-divider my-0"></hr>
+
+
+                    <li class="nav-item text-center">
+                        <div class="text-center ">  
+                            <h:commandButton styleClass="btn btn-primarys text-white btn-block" value="Anasayfa" action="/index.xhtml" />
+                        </div>
+                    </li>
+
+                    <li class="nav-item text-center">
+                        <div class="text-center ">  
+                            <h:commandButton styleClass="btn btn-primarys text-white btn-block" value="Film" action="/panel/film/film.xhtml" />
+                        </div>
+                    </li>
+
+                    <li class="nav-item text-center">
+                        <div class="text-center ">  
+                            <h:commandButton styleClass="btn btn-primarys text-white btn-block" value="Kategori" action="/panel/kategori/kategori.xhtml" />
+                        </div>
+                    </li>
+                    <li class="nav-item text-center">
+                        <div class="text-center ">  
+                            <h:commandButton styleClass="btn btn-primarys text-white btn-block" value="Dil" action="/panel/dil/dil.xhtml" />
+                        </div>
+                    </li>
+                    <li class="nav-item text-center">
+                        <div class="text-center ">  
+                            <h:commandButton styleClass="btn btn-primarys text-white btn-block" value="Yayinci" action="/panel/yayinci/yayinci.xhtml" />
+                        </div>
+                    </li>
+                    <li class="nav-item text-center">
+                        <div class="text-center ">  
+                            <h:commandButton styleClass="btn btn-primarys text-white btn-block" value="Yonetici" action="/panel/yonetici/yonetici.xhtml" />
+                        </div>
+                    </li>
+                    <li class="nav-item text-center">
+                        <div class="text-center ">  
+                            <h:commandButton styleClass="btn btn-primarys text-white btn-block" value="Ulke" action="/panel/ulke/ulke.xhtml" />
+                        </div>
+                    </li>
+                    <li class="nav-item text-center">
+                        <div class="text-center ">  
+                            <h:commandButton styleClass="btn btn-primarys text-white btn-block" value="Yazar" action="/panel/yazar/yazar.xhtml" />
+                        </div>
+                    </li>
+                    <li class="nav-item text-center">
+                        <div class="text-center ">  
+                            <h:commandButton styleClass="btn btn-primarys text-white btn-block" value="Kullanici" action="/panel/kullanici/kullanici.xhtml" />
+                        </div>
+                    </li>
+                    <li class="nav-item text-center">
+                        <div class="text-center ">  
+                            <h:commandButton styleClass="btn btn-primarys text-white btn-block" value="Oyuncu" action="/panel/oyuncu/oyuncu.xhtml" />
+                        </div>
+                    </li>
+                    <li class="nav-item text-center">
+                        <div class="text-center ">  
+                            <h:commandButton styleClass="btn btn-primarys text-white btn-block" value="Yonetmen" action="/panel/yonetmen/yonetmen.xhtml" />
+                        </div>
+                    </li>
+                    <li class="nav-item text-center">
+                        <div class="text-center ">  
+                            <h:commandButton styleClass="btn btn-primarys text-white btn-block" value="Dosya" action="/panel/dosya/dosya.xhtml" />
+                        </div>
+                    </li>
+
+                    <br></br>
+                    <div class="text-center">  
+                        <h:commandButton styleClass="btn btn-light" value="Cikis" action="/index" />
+                    </div>
+                    <br/><br/><br/>
+                </h:form>
+            </nav>
+            
+            <div class="col-md-7">
+            <h:form>
+                <br/>
+                <h:dataTable styleClass="table table-striped" value="#{yoneticiController.yoneticiList}" var="yonetici">
+                    <h:column>
+                        <f:facet name="header"> yonetici_id</f:facet>
+                            #{yonetici.yonetici_id}
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header"> Kullanici Adi</f:facet>
+                        <h:commandLink action ="#{yoneticiController.formuGuncelle(yonetici)}" value="#{yonetici.kullanici_adi}" >
+                            
+                        </h:commandLink>
+
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header"> Sifre</f:facet>
+                        <h:commandLink action ="#{yoneticiController.formuGuncelle(yonetici)}" value="#{yonetici.sifre}" >
+                            
+                        </h:commandLink>
+
+                    </h:column>
+                    <h:column>
+                        <f:facet name="header"> Sil</f:facet>
+                        <h:commandButton  styleClass="btn btn-danger" action="#{yoneticiController.onaylaSil(yonetici)}" value ="Sil" >
+                            
+                        </h:commandButton>
+
+                    </h:column>
+                </h:dataTable>
+            </h:form>
+            </div>
+            
+            <div class="col-md-3">
+            <h:form id="yonetici-form">
+                <br/>
+                <h:inputHidden value="#{yoneticiController.yonetici.yonetici_id}" />
+                <div class ="form-group">
+                    <label for ="adGir"><h6>Kullanici Adi</h6></label>
+                    <h:inputText id="adGir" value ="#{yoneticiController.yonetici.kullanici_adi}" styleClass="form-control"/>
+
+                </div>
+                <div class ="form-group">
+                    <label for ="sifreGir"><h6>Sifre</h6></label>
+                    <h:inputText id="sifreGir" value ="#{yoneticiController.yonetici.sifre}" styleClass="form-control" validatorMessage="Sifre kurallarına uymuyor" >
+                        <f:validateRegex pattern="/[a-zA-Z]+/g" /> 
+                    </h:inputText>
+                    <h:message for="sifreGir" style="color:red" />
+
+                </div>
+
+                <div class="form-group">
+                    <div class="btn-group">
+                        <h:commandButton rendered="#{yoneticiController.yonetici.kullanici_adi == null}" styleClass="btn btn-primary" value ="Ekle" action ="#{yoneticiController.olustur}">
+                            
+                        </h:commandButton>
+
+                        <h:commandButton rendered="#{yoneticiController.yonetici.kullanici_adi != null}" styleClass="btn btn-warning" value ="Guncelle" action ="#{yoneticiController.guncelle}">
+                            
+                        </h:commandButton>
+
+                        <h:commandButton rendered="#{yoneticiController.yonetici.kullanici_adi != null}" styleClass="btn btn-info" value ="Temizle" action ="#{yoneticiController.temizle}">
+                            
+                        </h:commandButton>
+                    </div>
+                </div>
+            </h:form>
+            </div>
+
+        </div>
+        
+    </h:body>
+</html>
+

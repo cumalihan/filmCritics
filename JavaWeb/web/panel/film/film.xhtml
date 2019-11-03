@@ -1,0 +1,212 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+    <h:head>
+        <h:outputStylesheet library ="css" name="bootstrap.css"/>
+        <title>Film</title>
+        <style>
+            .bg-primarys{
+                background-color: #0f5e7f !important;
+            }
+        </style>
+    </h:head>
+    <h:body rendered="#{kullaniciKontroller.kullanici.kullanici_adi==null ? sessionScope.kullanici.yetki.grup == 'admin' ? true : false : true}">
+        
+        <div class ="row">
+            <nav  class="nav flex-column bg-primarys vertical-menu col-md-2 nav-tabs">
+                <h:form>
+                    
+                    <div class="navbar-header">
+                        <h:link outcome="/index.xhtml">
+                            <h:graphicImage value="/media/DaLogo.png" width="256" /> 
+                        </h:link>
+                    </div>
+                    <hr class="sidebar-divider my-0"></hr>
+
+
+                    <li class="nav-item text-center">
+                        <div class="text-center ">  
+                            <h:commandButton styleClass="btn btn-primarys text-white btn-block" value="Anasayfa" action="/index.xhtml" />
+                        </div>
+                    </li>
+
+                    <li class="nav-item text-center">
+                        <div class="text-center ">  
+                            <h:commandButton styleClass="btn btn-primarys text-white btn-block " value="Film" action="/panel/film/film.xhtml" />
+                        </div>
+                    </li>
+
+                    <li class="nav-item text-center">
+                        <div class="text-center ">  
+                            <h:commandButton styleClass="btn btn-primarys text-white btn-block" value="Kategori" action="/panel/kategori/kategori.xhtml" />
+                        </div>
+                    </li>
+                    <li class="nav-item text-center">
+                        <div class="text-center ">  
+                            <h:commandButton styleClass="btn btn-primarys text-white btn-block" value="Dil" action="/panel/dil/dil.xhtml" />
+                        </div>
+                    </li>
+                    <li class="nav-item text-center">
+                        <div class="text-center ">  
+                            <h:commandButton styleClass="btn btn-primarys text-white btn-block" value="Yayinci" action="/panel/yayinci/yayinci.xhtml" />
+                        </div>
+                    </li>
+                    <li class="nav-item text-center">
+                        <div class="text-center ">  
+                            <h:commandButton styleClass="btn btn-primarys text-white btn-block" value="Yonetici" action="/panel/yonetici/yonetici.xhtml" />
+                        </div>
+                    </li>
+                    <li class="nav-item text-center">
+                        <div class="text-center ">  
+                            <h:commandButton styleClass="btn btn-primarys text-white btn-block" value="Ulke" action="/panel/ulke/ulke.xhtml" />
+                        </div>
+                    </li>
+                    <li class="nav-item text-center">
+                        <div class="text-center ">  
+                            <h:commandButton styleClass="btn btn-primarys text-white btn-block" value="Yazar" action="/panel/yazar/yazar.xhtml" />
+                        </div>
+                    </li>
+                    <li class="nav-item text-center">
+                        <div class="text-center ">  
+                            <h:commandButton styleClass="btn btn-primarys text-white btn-block" value="Kullanici" action="/panel/kullanici/kullanici.xhtml" />
+                        </div>
+                    </li>
+                    <li class="nav-item text-center">
+                        <div class="text-center ">  
+                            <h:commandButton styleClass="btn btn-primarys text-white btn-block" value="Oyuncu" action="/panel/oyuncu/oyuncu.xhtml" />
+                        </div>
+                    </li>
+                    <li class="nav-item text-center">
+                        <div class="text-center ">  
+                            <h:commandButton styleClass="btn btn-primarys text-white btn-block" value="Yonetmen" action="/panel/yonetmen/yonetmen.xhtml" />
+                        </div>
+                    </li>
+                    <li class="nav-item text-center">
+                        <div class="text-center ">  
+                            <h:commandButton styleClass="btn btn-primarys text-white btn-block" value="Dosya" action="/panel/dosya/dosya.xhtml" />
+                        </div>
+                    </li>
+
+                    <br></br>
+                    <div class="text-center">  
+                        <h:commandButton styleClass="btn btn-light" value="Cikis" action="/index" />
+                    </div>
+                    <br/><br/><br/>
+                </h:form>
+            </nav>
+
+
+            <div class ="col-md-7">
+                <div class ="container ">
+                    <h:form>
+                        <br/>
+                        <div class="pagination  justify-content-center" >
+                            <h:commandButton action="#{filmController.geri()}" value="Geri" styleClass="btn btn-outline-primary"/>
+                            <pre><b style="color:#0099ff;" >  #{filmController.sayfa} / #{filmController.sayfaSayısı}  </b></pre>
+                            <h:commandButton action="#{filmController.ileri()}" value="İleri" styleClass="btn btn-default btn-outline-primary"/> 
+                        </div>
+                        
+                        <h:form>
+
+                            Arama Terimi <h:inputText value="#{filmController.terimAra}" />
+                            <h:commandButton action="#{filmController.ara()}" value="Ara" />
+                            <h:commandButton rendered="#{filmController.terimAra!=null}" action="#{filmController.aramaTemizle()}" value="Aramayı Temizle" />
+
+                        </h:form>
+
+                        <h:dataTable styleClass="table table-striped" value="#{filmController.filmList}" var="film">
+                            <h:column>
+                                <f:facet name="header"> film_id</f:facet>
+                                <h:commandLink action="#{filmController.formuGuncelle(film)}" value="#{film.film_id}" />                                    
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header"> Film Ismi</f:facet>
+                                    #{film.baslik}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header"> Vizyon Tarihi</f:facet>
+                                    #{film.vizyon_tarihi}
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header"> Dil</f:facet>
+                                    #{film.dil.dil}
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header"> Kategori</f:facet>
+                                <ul>
+                                    <ui:repeat value="#{film.filmKategorileri}" var="kategori">
+                                        <li>#{kategori.kategori}</li>
+                                    </ui:repeat>
+                                </ul>
+                            </h:column>
+
+                            <h:column>
+                                <f:facet name="header"> Resim</f:facet>
+                                <h:graphicImage width="75"  value="/dosya/#{film.dosya.dosya_ismi}"/>
+                            </h:column>
+
+                        </h:dataTable>
+                    </h:form>
+                </div>
+            </div>
+            <div class ="col-md-3">
+                <h:form>
+                    <br/>
+                    <div class ="form-group">
+                        <label for ="dilSec">Dil Sec</label>
+                        <h:selectOneMenu styleClass="custom-select" id="dilSec" value="#{filmController.film.dil}" converter="dilConverter">
+                            <f:selectItems value="#{filmController.dilList}" var="dil" itemValue="#{dil}" itemLabel="#{dil.dil}" />
+                        </h:selectOneMenu>
+                    </div>
+                    <div class ="form-group">
+                        <label for ="baslikGir">Baslik Gir</label>
+                        <h:inputText id="baslikGir" value ="#{filmController.film.baslik}" styleClass="form-control"/>
+
+                    </div>
+                    <div class ="form-group">
+                        <label for ="puanGir">Puan Gir</label>
+                        <h:inputText id="puanGir" value ="#{filmController.film.puan}" styleClass="form-control"/>
+
+                    </div>
+                    <div class ="form-group">
+                        <label for ="cikisGir">Vizyon Tarihi Gir</label>
+                        <h:inputText id="cikisGir" value ="#{filmController.film.vizyon_tarihi}" styleClass="form-control"/>
+                    </div>
+                    <div class ="form-group">
+                        <label for ="aciklamaGir">Aciklama Gir</label>
+                        <h:inputTextarea id="aciklamaGir" value ="#{filmController.film.aciklama}" styleClass="form-control"/>
+                    </div>
+
+                    <div class ="form-group">
+                        <label for ="kategoriGir">Kategori Sec</label>
+                        <h:selectManyListbox id="kategoriGir" value ="#{filmController.film.filmKategorileri}" styleClass="custom-select" converter="kategoriConverter">
+                            <f:selectItems value="#{filmController.kategoriController.kategoriList}" var="kategori" itemValue="#{kategori}" itemLabel="#{kategori.kategori}" />
+                        </h:selectManyListbox>
+                    </div>
+
+                    <div class ="form-group">
+                        <label for ="resimSec">Resim Sec</label>
+                        <h:selectOneMenu styleClass="custom-select" id="resimSec" value="#{filmController.film.dosya}" converter="dosyaConverter">
+                            <f:selectItems value="#{filmController.dosyaList}" var="dosya" itemValue="#{dosya}" itemLabel="#{dosya.dosya_ismi}" />
+                        </h:selectOneMenu>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="btn-group">
+                            <h:commandButton rendered="#{filmController.film.baslik == null}" action="#{filmController.olustur}" value="Ekle" styleClass="btn btn-primary" />
+                            <h:commandButton rendered="#{filmController.film.baslik != null}" action="#{filmController.guncelle}" value="Duzelt" styleClass="btn btn-primary" />
+                            <h:commandButton rendered="#{filmController.film.baslik != null}" action="#{filmController.onaylaSil()}" value="Sil" styleClass="btn btn-danger" />
+                        </div>
+                    </div>
+
+                </h:form>
+            </div>
+        </div>
+       
+    </h:body>
+</html>

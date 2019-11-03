@@ -1,0 +1,168 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <h:outputStylesheet library ="css" name="bootstrap.css"/>
+        <title>Ulke</title>
+        <style>
+            .bg-primarys{
+                background-color: #0f5e7f !important;
+            }
+        </style>
+    </h:head>
+    <h:body rendered="#{kullaniciKontroller.kullanici.kullanici_adi==null ? sessionScope.kullanici.yetki.grup == 'admin' ? true : false : true}">
+        
+            <div class ="row">
+                <nav  class="nav flex-column bg-primarys vertical-menu col-md-2 nav-tabs">
+                    <h:form>
+                        <div class="navbar-header">
+
+                            <h:link outcome="/index.xhtml">
+                                <h:graphicImage value="/media/DaLogo.png" width="256" /> 
+                            </h:link>
+
+                        </div>
+                        <hr class="sidebar-divider my-0"></hr>
+
+
+                        <li class="nav-item text-center">
+                            <div class="text-center ">  
+                                <h:commandButton styleClass="btn btn-primarys text-white btn-block" value="Anasayfa" action="/index.xhtml" />
+                            </div>
+                        </li>
+
+                        <li class="nav-item text-center">
+                            <div class="text-center ">  
+                                <h:commandButton styleClass="btn btn-primarys text-white btn-block" value="Film" action="/panel/film/film.xhtml" />
+                            </div>
+                        </li>
+
+                        <li class="nav-item text-center">
+                            <div class="text-center ">  
+                                <h:commandButton styleClass="btn btn-primarys text-white btn-block" value="Kategori" action="/panel/kategori/kategori.xhtml" />
+                            </div>
+                        </li>
+                        <li class="nav-item text-center">
+                            <div class="text-center ">  
+                                <h:commandButton styleClass="btn btn-primarys text-white btn-block" value="Dil" action="/panel/dil/dil.xhtml" />
+                            </div>
+                        </li>
+                        <li class="nav-item text-center">
+                            <div class="text-center ">  
+                                <h:commandButton styleClass="btn btn-primarys text-white btn-block" value="Yayinci" action="/panel/yayinci/yayinci.xhtml" />
+                            </div>
+                        </li>
+                        <li class="nav-item text-center">
+                            <div class="text-center ">  
+                                <h:commandButton styleClass="btn btn-primarys text-white btn-block" value="Yonetici" action="/panel/yonetici/yonetici.xhtml" />
+                            </div>
+                        </li>
+                        <li class="nav-item text-center">
+                            <div class="text-center ">  
+                                <h:commandButton styleClass="btn btn-primarys text-white btn-block" value="Ulke" action="/panel/ulke/ulke.xhtml" />
+                            </div>
+                        </li>
+                        <li class="nav-item text-center">
+                            <div class="text-center ">  
+                                <h:commandButton styleClass="btn btn-primarys text-white btn-block" value="Yazar" action="/panel/yazar/yazar.xhtml" />
+                            </div>
+                        </li>
+                        <li class="nav-item text-center">
+                            <div class="text-center ">  
+                                <h:commandButton styleClass="btn btn-primarys text-white btn-block" value="Kullanici" action="/panel/kullanici/kullanici.xhtml" />
+                            </div>
+                        </li>
+                        <li class="nav-item text-center">
+                            <div class="text-center ">  
+                                <h:commandButton styleClass="btn btn-primarys text-white btn-block" value="Oyuncu" action="/panel/oyuncu/oyuncu.xhtml" />
+                            </div>
+                        </li>
+                        <li class="nav-item text-center">
+                            <div class="text-center ">  
+                                <h:commandButton styleClass="btn btn-primarys text-white btn-block" value="Yonetmen" action="/panel/yonetmen/yonetmen.xhtml" />
+                            </div>
+                        </li>
+                        <li class="nav-item text-center">
+                            <div class="text-center ">  
+                                <h:commandButton styleClass="btn btn-primarys text-white btn-block" value="Dosya" action="/panel/dosya/dosya.xhtml" />
+                            </div>
+                        </li>
+
+                        <br></br>
+                        <div class="text-center">  
+                            <h:commandButton styleClass="btn btn-light" value="Cikis" action="/index" />
+                        </div>
+                        <br/><br/><br/>
+                    </h:form>
+                </nav>
+
+                <div class="col-md-7">
+                    <h:form>
+                        <br/>
+                        <div class="pagination  justify-content-center" >
+                            <h:commandButton action="#{ulkeController.geri()}" value="Geri" styleClass="btn btn-outline-primary"/>
+                            <pre><b style="color:#0099ff;" >  #{ulkeController.sayfa} / #{ulkeController.sayfaSayısı}  </b></pre>
+                            <h:commandButton action="#{ulkeController.ileri()}" value="İleri" styleClass="btn btn-default btn-outline-primary"/> 
+                        </div>
+
+                        <h:form>
+
+                            Arama Terimi <h:inputText value="#{ulkeController.terimAra}" />
+                            <h:commandButton action="#{ulkeController.ara()}" value="Ara" />
+                            <h:commandButton rendered="#{ulkeController.terimAra!=null}" action="#{ulkeController.aramaTemizle()}" value="Aramayı Temizle" />
+
+                        </h:form>
+
+                        <h:dataTable styleClass="table table-striped" value="#{ulkeController.ulkeList}" var="ulke">
+                            <h:column>
+                                <f:facet name="header"> ulke_id</f:facet>
+                                    #{ulke.ulke_id}
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header"> Ulke</f:facet>
+                                <h:commandLink action ="#{ulkeController.formuGuncelle(ulke)}" value="#{ulke.ulke}" >
+                                    <f:ajax execute="@this" render="ulke-form"/>
+                                </h:commandLink>
+
+                            </h:column>
+                            <h:column>
+                                <f:facet name="header"> Sil</f:facet>
+                                <h:commandButton  styleClass="btn btn-danger" action="#{ulkeController.onaylaSil(ulke)}" value ="Sil" >
+                                    <f:ajax execute="@this" render="ulke-table"/>
+                                </h:commandButton>
+
+                            </h:column>
+                        </h:dataTable>
+                    </h:form>
+                </div>
+
+                <div class="col-md-3">
+                    <h:form id="ulke-form">
+                        <br/>
+                        <h:inputHidden value="#{ulkeController.ulke.ulke_id}" />
+                        <h6>Ulke</h6> <h:inputText value="#{ulkeController.ulke.ulke}" /> <br/>
+
+                        <div class="form-group">
+                            <div class="btn-group">
+                                <h:commandButton rendered="#{ulkeController.ulke.ulke == null}" styleClass="btn btn-primary" value ="Ekle" action ="#{ulkeController.olustur}">
+                                    <f:ajax execute="ulke-form" render="ulke-form ulke-table"/>
+                                </h:commandButton>
+
+                                <h:commandButton rendered="#{ulkeController.ulke.ulke != null}" styleClass="btn btn-warning" value ="Guncelle" action ="#{ulkeController.guncelle}">
+                                    <f:ajax execute="ulke-form" render="ulke-form ulke-table"/>
+                                </h:commandButton>
+
+                                <h:commandButton rendered="#{ulkeController.ulke.ulke != null}" styleClass="btn btn-info" value ="Temizle" action ="#{ulkeController.temizle}">
+                                    <f:ajax execute="@this" render="ulke-form"/>
+                                </h:commandButton>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+
+            </div>
+        
+    </h:body>
+</html>

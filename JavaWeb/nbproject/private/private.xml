@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="1">
+        <file>
+            <url>src/java/controller/CategoryController.java</url>
+            <bookmark id="1">
+                <name/>
+                <line>46</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/Users/cumalihanunlu/Desktop/filmcritics/JavaWeb/src/java/entity/Kategori.java</file>
+            <file>file:/Users/cumalihanunlu/Desktop/filmcritics/JavaWeb/src/java/entity/Yayinci.java</file>
+            <file>file:/Users/cumalihanunlu/Desktop/filmcritics/JavaWeb/src/java/entity/Yonetici.java</file>
+            <file>file:/Users/cumalihanunlu/Desktop/filmcritics/JavaWeb/src/java/entity/Dosya.java</file>
+            <file>file:/Users/cumalihanunlu/Desktop/filmcritics/JavaWeb/src/java/filter/OturumFilter.java</file>
+            <file>file:/Users/cumalihanunlu/Desktop/filmcritics/JavaWeb/src/java/dao/YoneticiDAO.java</file>
+            <file>file:/Users/cumalihanunlu/Desktop/filmcritics/JavaWeb/src/java/dao/UlkeDAO.java</file>
+            <file>file:/Users/cumalihanunlu/Desktop/filmcritics/JavaWeb/src/java/entity/Yetki.java</file>
+            <file>file:/Users/cumalihanunlu/Desktop/filmcritics/JavaWeb/src/java/util/DBConnection.java</file>
+            <file>file:/Users/cumalihanunlu/Desktop/filmcritics/JavaWeb/src/java/dao/YayinciDAO.java</file>
+            <file>file:/Users/cumalihanunlu/Desktop/filmcritics/JavaWeb/src/java/entity/Ulke.java</file>
+            <file>file:/Users/cumalihanunlu/Desktop/filmcritics/JavaWeb/src/java/entity/Oyuncu.java</file>
+            <file>file:/Users/cumalihanunlu/Desktop/filmcritics/JavaWeb/src/java/entity/Yazar.java</file>
+            <file>file:/Users/cumalihanunlu/Desktop/filmcritics/JavaWeb/src/java/dao/YonetmenDAO.java</file>
+            <file>file:/Users/cumalihanunlu/Desktop/filmcritics/JavaWeb/src/java/entity/Dil.java</file>
+            <file>file:/Users/cumalihanunlu/Desktop/filmcritics/JavaWeb/src/java/entity/Kullanici.java</file>
+            <file>file:/Users/cumalihanunlu/Desktop/filmcritics/JavaWeb/src/java/dao/YazarDAO.java</file>
+            <file>file:/Users/cumalihanunlu/Desktop/filmcritics/JavaWeb/src/java/util/DosyaServlet.java</file>
+            <file>file:/Users/cumalihanunlu/Desktop/filmcritics/JavaWeb/src/java/dao/YetkiDAO.java</file>
+            <file>file:/Users/cumalihanunlu/Desktop/filmcritics/JavaWeb/src/java/entity/Film.java</file>
+            <file>file:/Users/cumalihanunlu/Desktop/filmcritics/JavaWeb/src/java/entity/Yonetmen.java</file>
+        </group>
+    </open-files>
+</project-private>

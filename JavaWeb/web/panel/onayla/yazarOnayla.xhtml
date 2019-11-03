@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <h:outputStylesheet library ="css" name="bootstrap.css"/>
+        <title>Onayla</title>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <h:form>
+                Silmek istediğinize emin misiniz ?
+                <pre>
+                    <b>Yazar ID </b>#{yazarController.yazar.yazar_id}<br/>
+                    <b>Ad </b>#{yazarController.yazar.ad}<br/>
+                    <b>Soyad </b>#{yazarController.yazar.soyad}<br/>
+                </pre>
+                
+                <div class="btn-group">
+                    <h:commandButton styleClass="btn btn-dark" action="/panel/yazar/yazar" value="Geri"/>
+                    <h:commandButton styleClass="btn btn-dark" action="#{yazarController.Sil}" value="Sil"/>
+                </div>
+                
+            </h:form> 
+        </div>
+    </h:body>
+</html>
+

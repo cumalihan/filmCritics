@@ -1,0 +1,30 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <h:head>
+        <h:outputStylesheet library ="css" name="bootstrap.css"/>
+        <title>Onayla</title>
+    </h:head>
+    <h:body>
+        <div class="container">
+            <h:form>
+                Silmek istediğinize emin misiniz ?
+                <pre>
+                    <b>Film ID </b>#{filmController.film.film_id}<br/>
+                    <b>Film Adı </b>#{filmController.film.baslik}<br/>
+                    <b>Dil </b>#{filmController.film.dil.dil}<br/>
+                    <b>Kategori </b>#{filmController.film.filmKategorileri}<br/>
+                    <b>Vizyon Tarihi </b>#{filmController.film.vizyon_tarihi}<br/>
+                </pre>
+
+                <div class="btn-group">
+                    <h:commandButton styleClass="btn btn-dark" action="/panel/film/film" value="Geri"/>
+                    <h:commandButton styleClass="btn btn-dark" action="#{filmController.sil}" value="Sil"/>
+                </div>
+
+            </h:form> 
+        </div>
+    </h:body>
+</html>
+
